@@ -42,7 +42,7 @@ export const TodoItem = ({
 				</>
 			) : (
 				<>
-					<span>{title}</span>
+					<span className={styles.title}>{title}</span>
 					<button
 						className={styles.buttonUpdate}
 						onClick={() => handleEdit(id, title)}
