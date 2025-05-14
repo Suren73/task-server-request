@@ -1,0 +1,39 @@
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.9);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	z-index: 9999;
+}
+
+.spinner {
+	display: block;
+	width: 50px;
+	height: 50px;
+	margin: 2rem auto;
+	border: 5px solid #e3e3e3;
+	border-radius: 50%;
+	border-top-color: #3498db;
+	animation: rotate 1s linear infinite;
+}
+
+.message {
+	font-family: Arial, sans-serif;
+	font-size: 1.2em;
+	color: #333;
+}
+
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}

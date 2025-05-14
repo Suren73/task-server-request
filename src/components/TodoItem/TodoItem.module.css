@@ -1,0 +1,91 @@
+.listItem {
+	padding: 1.5rem;
+	counter-increment: todo-counter;
+	font-size: 1.1rem;
+	color: #333;
+	border-bottom: 1px solid #eee;
+	display: flex;
+	gap: 10px;
+	justify-content: space-between;
+	align-items: center;
+	text-align: left;
+}
+
+.listItem:last-child {
+	border-bottom: none;
+}
+
+.listItem::before {
+	content: counter(todo-counter);
+	margin-right: 1rem;
+	width: 30px;
+	height: 30px;
+	background-color: #3498db;
+	color: white;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.listItem span {
+	flex-grow: 1;
+	word-break: break-word;
+}
+
+.inputEdit {
+	flex: 1;
+	padding: 0.8rem;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 1rem;
+	background-color: #eee;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.buttonDelete,
+.buttonUpdate,
+.buttonCancel,
+.buttonSave {
+	padding: 0.8rem 1.5rem;
+	border: none;
+	border-radius: 4px;
+	background: #3498db;
+	color: white;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.buttonSave {
+	background-color: #4caf50;
+}
+
+.buttonSave:hover {
+	background-color: #418343;
+}
+
+.buttonDelete {
+	background: #e72b2b;
+}
+
+.buttonDelete:hover {
+	background: #c02727;
+}
+
+.buttonUpdate {
+	background: #67e72b;
+	/* margin-left: 10px; */
+}
+
+.buttonUpdate:hover {
+	background: #59c527;
+}
+
+.buttonCancel {
+	background-color: #f44336;
+}
+
+.buttonCancel:hover {
+	background-color: #c13d33;
+}
