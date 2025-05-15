@@ -1,3 +1,4 @@
+export * from './ConfirmationModal/ConfirmationModal';
 export * from './LoadingOverlay/LoadingOverlay';
 export * from './SearchBar/SearchBar';
 export * from './SortButton/SortButton';

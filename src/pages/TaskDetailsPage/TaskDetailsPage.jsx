@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ConfirmationModal, LoadingOverlay } from '../../components';
 import { API_URL } from '../../constants';
 import {
 	useRequestDeleteTodo,
@@ -13,8 +14,9 @@ export default function TaskDetailsPage() {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const [editingText, setEditingText] = useState('');
-	const { setTodos, setIsLoading } = useRequestGetTodos();
+	const { setTodos, isLoading, setIsLoading } = useRequestGetTodos();
 	const inputRef = useRef(null);
+	const [showConfirmModal, setShowConfirmModal] = useState(false);
 
 	const handleUpdate = useRequestUpdateTodo(setTodos, setIsLoading);
 	const handleDelete = useRequestDeleteTodo(setTodos, setIsLoading);
@@ -37,6 +39,13 @@ export default function TaskDetailsPage() {
 		return () => controller.abort();
 	}, [id, navigate, setIsLoading]);
 
+	const handleDeleteConfirmation = () => setShowConfirmModal(true);
+
+	const handleConfirmDelete = () => {
+		setShowConfirmModal(false);
+		handleDelete(id);
+	};
+
 	return (
 		<div className={styles.container}>
 			<button
@@ -46,7 +55,7 @@ export default function TaskDetailsPage() {
 			>
 				← Назад
 			</button>
-
+			{isLoading && <LoadingOverlay />}
 			<div className={styles.content}>
 				<input
 					value={editingText}
@@ -61,11 +70,21 @@ export default function TaskDetailsPage() {
 					>
 						Сохранить
 					</button>
-					<button className={styles.deleteBtn} onClick={() => handleDelete(id)}>
+					<button
+						className={styles.deleteBtn}
+						onClick={handleDeleteConfirmation}
+					>
 						Удалить
 					</button>
 				</div>
 			</div>
+			{showConfirmModal && (
+				<ConfirmationModal
+					message="Вы уверены, что хотите удалить эту задачу?"
+					onConfirm={handleConfirmDelete}
+					onCancel={() => setShowConfirmModal(false)}
+				/>
+			)}
 		</div>
 	);
 }
