@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './SortButton.module.css';
 
 export const SortButton = ({ sortByAlphabet, setSortByAlphabet }) => {

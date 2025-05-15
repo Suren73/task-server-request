@@ -9,15 +9,13 @@ export function useRequestGetTodos() {
 	useEffect(() => {
 		setIsLoading(true);
 
-		setTimeout(() => {
-			axios
-				.get(API_URL)
-				.then((response) => {
-					setTodos(response.data);
-				})
-				.catch((error) => console.error('Ошибка:', error))
-				.finally(() => setIsLoading(false));
-		}, 2500);
+		axios
+			.get(API_URL)
+			.then((response) => {
+				setTodos(response.data);
+			})
+			.catch((error) => console.error('Ошибка:', error))
+			.finally(() => setIsLoading(false));
 	}, []);
 
 	return { todos, setTodos, isLoading, setIsLoading };

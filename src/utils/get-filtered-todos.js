@@ -1,5 +1,5 @@
-export function getFilteredTodos(todos, searchQuery) {
+export function getFilteredTodos(todos, query) {
 	return todos.filter((todo) =>
-		todo.title.toLowerCase().includes(searchQuery.trim().toLowerCase()),
+		todo.title.toLowerCase().includes(query.trim().toLowerCase()),
 	);
 }

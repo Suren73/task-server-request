@@ -1,4 +1,3 @@
-import React from 'react';
 import { createInputHandler } from '../../handlers';
 import styles from './TodoForm.module.css';
 

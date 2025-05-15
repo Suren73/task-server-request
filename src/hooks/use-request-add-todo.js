@@ -10,23 +10,21 @@ export function useRequestAddTodo(newTodo, setNewTodo, setTodos, setIsLoading) {
 		setIsCreating(true);
 		setIsLoading(true);
 
-		setTimeout(() => {
-			axios
-				.post(API_URL, {
-					title: newTodo.trim(),
-					completed: false,
-				})
-				.then((response) => {
-					setTodos((prevTodo) => [...prevTodo, response.data]);
-					setNewTodo('');
-					console.log('Задача добавлена, ответ сервера: ', response.data);
-				})
-				.catch((error) => console.error('Ошибка:', error))
-				.finally(() => {
-					setIsLoading(false);
-					setIsCreating(false);
-				});
-		}, 2500);
+		axios
+			.post(API_URL, {
+				title: newTodo.trim(),
+				completed: false,
+			})
+			.then((response) => {
+				setTodos((prevTodo) => [...prevTodo, response.data]);
+				setNewTodo('');
+				console.log('Задача добавлена, ответ сервера: ', response.data);
+			})
+			.catch((error) => console.error('Ошибка:', error))
+			.finally(() => {
+				setIsLoading(false);
+				setIsCreating(false);
+			});
 	}
 
 	return { handleAdd, isCreating };
