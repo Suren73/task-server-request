@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './App.module.css';
-
+import { AppContext } from './context';
 import { LoadingOverlay, SearchBar, SortButton, TodoForm, TodoList } from './components';
 
 import {
@@ -36,36 +36,38 @@ function App() {
 		}
 	}, [editingId]);
 
+	const contextValue = {
+		todos,
+		newTodo,
+		setNewTodo,
+		isCreating,
+		searchQuery,
+		setSearchQuery,
+		sortByAlphabet,
+		setSortByAlphabet,
+		editingId,
+		setEditingId,
+		inputRef,
+		editingText,
+		setEditingText,
+		handleAdd,
+		handleUpdate,
+		handleDelete,
+	};
+
 	return (
-		<div className={styles.container}>
-			<div className={styles.menu}>
-				<h1 className={styles.title}>Список дел:</h1>
-				<TodoForm
-					newTodo={newTodo}
-					setNewTodo={setNewTodo}
-					handleAdd={handleAdd}
-					isCreating={isCreating}
-				/>
-				<SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+		<AppContext value={contextValue}>
+			<div className={styles.container}>
 				{isLoading && <LoadingOverlay />}
-				<SortButton
-					sortByAlphabet={sortByAlphabet}
-					setSortByAlphabet={setSortByAlphabet}
-				/>
+				<div className={styles.menu}>
+					<h1 className={styles.title}>Список дел:</h1>
+					<TodoForm />
+					<SearchBar />
+					<SortButton />
+				</div>
+				<TodoList />
 			</div>
-			<TodoList
-				todos={todos}
-				searchQuery={searchQuery}
-				sortByAlphabet={sortByAlphabet}
-				editingId={editingId}
-				setEditingId={setEditingId}
-				inputRef={inputRef}
-				editingText={editingText}
-				setEditingText={setEditingText}
-				handleUpdate={handleUpdate}
-				handleDelete={handleDelete}
-			/>
-		</div>
+		</AppContext>
 	);
 }
 

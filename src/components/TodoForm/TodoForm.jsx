@@ -1,8 +1,11 @@
-import React from 'react';
+import { useContext } from 'react';
+import { AppContext } from '../../context';
 import { createInputHandler } from '../../handlers';
 import styles from './TodoForm.module.css';
+// { newTodo, setNewTodo, handleAdd, isCreating }
+export const TodoForm = () => {
+	const { newTodo, setNewTodo, handleAdd, isCreating } = useContext(AppContext);
 
-export const TodoForm = ({ newTodo, setNewTodo, handleAdd, isCreating }) => {
 	return (
 		<div className={styles.controls}>
 			<input

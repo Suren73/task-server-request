@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './SortButton.module.css';
+import { AppContext } from '../../context';
+//{ sortByAlphabet, setSortByAlphabet }
 
-export const SortButton = ({ sortByAlphabet, setSortByAlphabet }) => {
+export const SortButton = () => {
+	const { sortByAlphabet, setSortByAlphabet } = useContext(AppContext);
+
 	return (
 		<div className={styles.sort}>
 			<button

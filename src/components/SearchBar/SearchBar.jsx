@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createInputHandler } from '../../handlers';
 import styles from './SearchBar.module.css';
+import { AppContext } from '../../context';
+// { searchQuery, setSearchQuery }
+export const SearchBar = () => {
+	const { searchQuery, setSearchQuery } = useContext(AppContext);
 
-export const SearchBar = ({ searchQuery, setSearchQuery }) => {
 	return (
 		<div className={styles.search}>
 			<input

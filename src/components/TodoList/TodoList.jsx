@@ -1,21 +1,23 @@
-import React from 'react';
+import { useContext } from 'react';
+import { AppContext } from '../../context';
+import { useDebounce } from '../../hooks';
 import { getFilteredTodos, getSortedTodos } from '../../utils';
 import { TodoItem } from '../TodoItem/TodoItem';
 import styles from './TodoList.module.css';
-import { useDebounce } from '../../hooks';
 
-export const TodoList = ({
-	todos,
-	searchQuery,
-	sortByAlphabet,
-	editingId,
-	setEditingId,
-	inputRef,
-	editingText,
-	setEditingText,
-	handleUpdate,
-	handleDelete,
-}) => {
+export const TodoList = () => {
+	const {
+		todos,
+		searchQuery,
+		sortByAlphabet,
+		editingId,
+		setEditingId,
+		inputRef,
+		editingText,
+		setEditingText,
+		handleUpdate,
+		handleDelete,
+	} = useContext(AppContext);
 	const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
 	const filteredTodos = getFilteredTodos(todos, debouncedSearchQuery);
